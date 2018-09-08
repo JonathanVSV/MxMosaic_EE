@@ -54,20 +54,20 @@ Pantalla de inicio
 Elementos básicos son: - Pantalla de rutinas - Pantalla de repositorios
 - Inspector, Consola, Trabajos - Mapa
 
-<img src="Img/1.png" width="2560" />
+<img src="Img/1.png" width="1000px" />
 
 Correr la rutina
 ----------------
 
 Irse al ícono de polígono
 
-<img src="Img/2.png" width="2560" />
+<img src="Img/2.png" width="1000px" />
 
 Aparece el siguiente menú
-<img src="Img/3.png" width="1000px" height="1000px" />
+<img src="Img/3.png" width="1000px" />
 
 Dar click en new layer
-<img src="Img/4.png" width="1000px" height="1000px" /> y aparece
+<img src="Img/4.png" width="1000px" /> y aparece
 geometría nueva (p.ej. 2)
 
 <img src="Img/5.png" width="1000px" />
