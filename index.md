@@ -198,3 +198,28 @@ Aparece un engranito al lado del trabajo que se corrió. Dar click en Run.
 
 Esperar hasta que aparezca una palominta en donde se ve el engrane y
 aparecerá en tu drive la imagen descargada.
+
+Parámetros del código
+-------------------
+
+carpeta: Corresponde al nombre de la carpeta en donde deseas guardar la imagen creada en tu google drive.
+
+nombreImag: Nombre del archivo de la imagen que se va a guardar
+
+polygon: Corresponde al polígono del área de interés
+
+maxCCL: Corresponde al porcentaje máximo de nubosidad deseado en una imagen para incluirla en la creación del mosaico anual.
+
+y1: Año inicial del periodo de análisis
+
+m1: Mes y día inicial del periodo de análisis
+
+y2: Año final del periodo de análisis
+
+m2: Mes y día final del periodo de análisis
+
+yTot: Un término calculado automáticamente que contiene el total de años a analizar.
+
+allSensors: Término para elegir si se quieren utilizar todos los sensores Landsat o únicamente alguno de ellos.
+
+funcion: Variable para elegir la función con la cual se va a construir el mosaico. Hay 6 opciones: media, moda, mediana, máximo, mínimo y media por intervalo. En caso de elegir esta última, se pueden indicar los percentiles inferior y superior con lo que se desea calcular la media. 
