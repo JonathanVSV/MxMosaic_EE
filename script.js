@@ -1,3 +1,5 @@
+//----------------------------------------------------------------------------
+//Definición de constantes
 var l8sr = ee.ImageCollection("LANDSAT/LC08/C01/T1_SR"),
     l7sr = ee.ImageCollection("LANDSAT/LE07/C01/T1_SR"),
     l5sr = ee.ImageCollection("LANDSAT/LT05/C01/T1_SR"),
@@ -7,7 +9,11 @@ var l8sr = ee.ImageCollection("LANDSAT/LC08/C01/T1_SR"),
           [-92.18103978416548, 15.501146831330118],
           [-92.04920384666548, 19.23318799521662],
           [-96.48768040916548, 19.15018198097653]]]),
-    table = ee.FeatureCollection("users/JonathanVSV/CuencaMex");
+    //Pega el siguiente link para acceder al polígono de México
+    //https://code.earthengine.google.com/?asset=users/JonathanVSV/Mx
+    //Una vez importada la tabla, cargar en el espacio de trabajo
+    // y nombrarla como 'table'. Debe quedar algo similar a esto:
+    //table = ee.FeatureCollection("users/JonathanVSV/CuencaMex");
 
 //----------------------------------------------------------------------------
 //Definición de constantes del usuario
@@ -221,7 +227,7 @@ var filterImCol = function(imageCol,sensor,maxCCL,dateInicial,dateFinal,agua){
   annualM = annualM.clip(polygon);
   Map.addLayer(annualM, {bands: bandas,min:100,max:1200},'RGB');
   
-  //Export image
+  //Exportar imagen
   Export.image.toDrive({
               image: annualM,
               description: nombreImag+year,
