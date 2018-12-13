@@ -220,11 +220,9 @@ default de pixeles a descargar.
 3. No poseer de suficiente espacio en el
 Google Drive personal. 
 4. La falta de ; al final de cada comando. 
-5.
-Errores ortográficos. 
+5. Errores ortográficos. 
 6. Sobrepasar el límite de procesamiento.a 
-7.
-Sobrepasar el límite de procesamiento.b
+7. Sobrepasar el límite de procesamiento.b
 
 Las soluciones a cada uno de estos problemas son los siguientes: 
 1.
@@ -234,8 +232,7 @@ var.
 de maxPixels. 
 3. Borrar archivos que no se utilicen en el Google Drive.
 4. Revisar que todos los comandos finalicen con ;. 
-5. Revisar los
-nombres de las variables y funciones (cuidando mayúsculas y minúsculas).
+5. Revisar los nombres de las variables y funciones (cuidando mayúsculas y minúsculas).
 6. Cuando ocurre esto normalmente se debe a que se quiere visualizar el
 resultado de un procesamiento tardado. La solución sencilla es no
 visualizar el resultado en el visualizador de la plataforma, sino sólo
