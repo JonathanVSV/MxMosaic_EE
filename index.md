@@ -78,7 +78,7 @@ geometría nueva (p.ej. 2)
 
 <img src="Img/5.png" width="1200px" />
 
-Apagar la capa de arriba (flechita de la izquirda)
+Apagar la capa de arriba (flechita de la izquierda)
 
 <img src="Img/6.png" width="1200px" />
 
@@ -98,7 +98,7 @@ Dar click en otro vértice <img src="Img/11.png" width="1200px" />
 Continuar con el mismo procedimiento colocando vértices
 <img src="Img/12.png" width="1200px" />
 
-Continuar colocando vertices <img src="Img/13.png" width="1200px" />
+Continuar colocando vértices <img src="Img/13.png" width="1200px" />
 
 Hasta cerrar la figura y que aparezca el relleno con color
 <img src="Img/14.png" width="1200px" />
@@ -212,25 +212,37 @@ indicado en la pestaña de la consola. Se recomienda leer la sección de
 Debugging de la plataforma, disponible en la siguiente liga:
 <https://developers.google.com/earth-engine/debugging>
 
-Algunos de los errores más comunes incluyen: 1. La falta de definición
-de los nombres de todas las variables (var). 2. Sobrepasar el límite por
-default de pixeles a descargar. 3. No poseer de suficiente espacio en el
-Google Drive personal. 4. La falta de ; al final de cada comando. 5.
-Errores ortográficos. 6. Sobrepasar el límite de procesamiento.a 7.
+Algunos de los errores más comunes incluyen: 
+1. La falta de definición
+de los nombres de todas las variables (var). 
+2. Sobrepasar el límite por
+default de pixeles a descargar. 
+3. No poseer de suficiente espacio en el
+Google Drive personal. 
+4. La falta de ; al final de cada comando. 
+5.
+Errores ortográficos. 
+6. Sobrepasar el límite de procesamiento.a 
+7.
 Sobrepasar el límite de procesamiento.b
 
-Las soluciones a cada uno de estos problemas son los siguientes: 1.
+Las soluciones a cada uno de estos problemas son los siguientes: 
+1.
 Revisar que todas las variables hayan sido declaradas con la función
-var. 2. En la línea final de exportación de la imagen cambiar el valor
-de maxPixels. 3. Borrar archivos que no se utilicen en el Google Drive.
-4. Revisar que todos los comandos finalicen con ;. 5. Revisar los
+var. 
+2. En la línea final de exportación de la imagen cambiar el valor
+de maxPixels. 
+3. Borrar archivos que no se utilicen en el Google Drive.
+4. Revisar que todos los comandos finalicen con ;. 
+5. Revisar los
 nombres de las variables y funciones (cuidando mayúsculas y minúsculas).
 6. Cuando ocurre esto normalmente se debe a que se quiere visualizar el
 resultado de un procesamiento tardado. La solución sencilla es no
 visualizar el resultado en el visualizador de la plataforma, sino sólo
 descargarlo. Google Earth Engine permite una mayor capacidad de
 procesamiento cuando se exportan los resultados que cuando se quiere
-visualizarlos. 7. A veces se puede sobrepasar el límite de procesamiento
+visualizarlos. 
+7. A veces se puede sobrepasar el límite de procesamiento
 por utilizar códigos redundantes. Este tipo de errores se pueden
 solucionar leyendo cuál es el método más apropiado para la función que
 el usuario desea realizar.
