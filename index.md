@@ -225,9 +225,8 @@ Google Drive personal.
 7. Sobrepasar el límite de procesamiento.b
 
 Las soluciones a cada uno de estos problemas son los siguientes: 
-1.
-Revisar que todas las variables hayan sido declaradas con la función
-var. 
+1. Revisar que todas las variables hayan sido declaradas con la función
+var.
 2. En la línea final de exportación de la imagen cambiar el valor
 de maxPixels. 
 3. Borrar archivos que no se utilicen en el Google Drive.
