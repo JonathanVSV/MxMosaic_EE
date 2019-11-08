@@ -1,1 +1,1 @@
-Es un tutorial sobre como utilizar Google Earth Engine para construir un mosaico de cualquier superficie del planeta. El script está bajo construcción, pero se planea poner una liga cuando esté terminado
+Es un tutorial sobre los elementos básicos del API de Google Earth Engine. En el tutorial se muestra los pasos necesarios para utilizar una rutina que construye mosaicos con imágenes Landsat (4, 5, 7 y 8).
