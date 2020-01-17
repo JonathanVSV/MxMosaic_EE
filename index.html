@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Jonthan V. Solórzano" />
+
+
+<title>Mosaico de México en GEE</title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="libs/navigation-1.1/tabsets.js"></script>
+<link href="libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Mosaico de México en GEE</h1>
+<h4 class="author">Jonthan V. Solórzano</h4>
+
+</div>
+
+
+<style type="text/css">
+
+body{ /* Normal  */
+      font-size: 16px;
+      color: #606060;
+  }
+ul{ /* Bullet  */
+      font-size: 16px;
+      color: #606060;
+  }
+td {  /* Table  */
+  font-size: 16px;
+  color: #505050;
+}
+h1.title {
+  font-size: 26px;
+  color: #404040;
+  font-weight: bold;
+}
+h1 { /* Header 1 */
+  font-size: 26px;
+  color: #404040;
+  font-weight: bold;
+}
+h2 { /* Header 2 */
+    font-size: 20px;
+    color: #404040;
+    font-weight: bold;
+}
+h3 { /* Header 3 */
+  font-size: 20px;
+  color: #404040;
+  font-weight: bold;
+}
+code.r{ /* Code block */
+    font-size: 16px;
+    color: #606060;
+}
+pre { /* Code block - determines code spacing between lines */
+    font-size: 14px;
+    color: #606060;
+}
+</style>
+<div id="tutorial-uso-rutina-gee-para-hacer-mosaicos" class="section level2">
+<h2>Tutorial uso rutina GEE para hacer mosaicos</h2>
+</div>
+<div id="pantalla-de-inicio" class="section level2">
+<h2>Pantalla de inicio</h2>
+<p>Elementos básicos son: - Pantalla de rutinas - Pantalla de repositorios - Inspector, Consola, Trabajos - Mapa</p>
+<p><img src="Img/1.png" width="780px" /></p>
+</div>
+<div id="abrir-el-codigo" class="section level2">
+<h2>Abrir el código</h2>
+<p>Dentro de la pantalla de repositorios irse a la sección “Reader” y seleccionar MX_6B_Mosaic. Dar click y debería aparecer lo siguiente:</p>
+<p><img src="Img/0.png" width="780px" /></p>
+</div>
+<div id="correr-la-rutina" class="section level2">
+<h2>Correr la rutina</h2>
+<p>Irse al ícono de polígono.</p>
+<p><img src="Img/2.png" width="780px" /></p>
+<p>Aparece el siguiente menú:</p>
+<p><img src="Img/3.png" width="780px" /></p>
+<p>Dar click en new layer.</p>
+<p><img src="Img/4.png" width="780px" /></p>
+<p>y aparece geometría nueva (p.ej. 2).</p>
+<p><img src="Img/5.png" width="780px" /></p>
+<p>Apagar la capa de arriba (flechita de la izquierda).</p>
+<p><img src="Img/6.png" width="780px" /></p>
+<p><img src="Img/7.png" width="780px" /></p>
+<p>Ir a la pantalla del mapa.</p>
+<p><img src="Img/8.png" width="780px" /></p>
+<p>Dar click sobre el área de interés, aparece un punto blanco.</p>
+<p><img src="Img/9.png" width="780px" /></p>
+<p>Mover el cursos para delimitar el área de interés.</p>
+<p><img src="Img/10.png" width="780px" /></p>
+<p>Dar click en otro vértice.</p>
+<p><img src="Img/11.png" width="780px" /></p>
+<p>Continuar con el mismo procedimiento colocando vértices.</p>
+<p><img src="Img/12.png" width="780px" /></p>
+<p>Continuar colocando vertices.</p>
+<p><img src="Img/13.png" width="780px" /></p>
+<p>Hasta cerrar la figura y que aparezca el relleno con color.</p>
+<p><img src="Img/14.png" width="780px" /></p>
+<p>Notar que en la parte superior de la pantalla de rutinas, aparece la variable geometry2 Está localizada en la parte inferior de la pantalla de definición de variables.</p>
+<p><img src="Img/15.png" width="780px" /></p>
+<p>Dar click en el nombre (en morado) y da la opción de renombrar la variable a como uno quiera. En este caso dejaré el nombre igual, como geometry2.</p>
+<p><img src="Img/16.png" width="780px" /></p>
+<p>A continuación, en la parte de la rutina se busca la variable polygon = areaInteres.</p>
+<p><img src="Img/17.png" width="780px" /></p>
+<p>Se cambia areaInteres por el nombre del polígono que dibujó el usuario, es decir, geometry 2.</p>
+<p><img src="Img/18.png" width="780px" /></p>
+<p>De esta manera queda así. A continuación le damos click en Run.</p>
+<p><img src="Img/19.png" width="780px" /></p>
+<p>Durante el proceso en la pantalla del mapa en la esquina superior derecha se verán barritas. cargando.</p>
+<p><img src="Img/20.png" width="780px" /></p>
+<p>Una vez cargadas las barras grises aparece la imagen dentro del área de interés.</p>
+<p><img src="Img/22.png" width="780px" /></p>
+<p>Se hace zoom al área de interés con el scroll del mouse o utilizando los botones de + y - de la pantalla del mapa en la esquina superior izquierda.</p>
+<p><img src="Img/23.png" width="780px" /></p>
+<p><img src="Img/24.png" width="780px" /></p>
+<p>Le damos click en donde dice geometry imports.</p>
+<p><img src="Img/25.png" width="780px" /></p>
+<p>Apagamos las capas que tengamos activadas (dar click en la felchita del lado izquierdo).</p>
+<p><img src="Img/26.png" width="780px" /></p>
+<p>Podemos ver el mosaico.</p>
+<p><img src="Img/26.png" width="780px" /></p>
+</div>
+<div id="inspeccionar-valores-de-pixeles" class="section level2">
+<h2>Inspeccionar valores de pixeles</h2>
+<p>En la pantalla superior derecha podemos inspeccionar el valor de los pixeles en el mapa. Dar click en la pestaña Inspector.</p>
+<p><img src="Img/28.png" width="780px" /></p>
+<p>Se debería ver así:</p>
+<p><img src="Img/29.png" width="780px" /></p>
+<p>Ir al mapa.</p>
+<p><img src="Img/30.png" width="780px" /></p>
+<p>Dar click en alguna región donde haya información de algún pixel.</p>
+<p><img src="Img/31.png" width="780px" /></p>
+<p>Aparece el valor del pixel en las bandas.</p>
+<p><img src="Img/32.png" width="780px" /></p>
+<p>Si se da click en otra área se actualizan los valores.</p>
+<p><img src="Img/33.png" width="780px" /></p>
+</div>
+<div id="exportar-resultados" class="section level2">
+<h2>Exportar resultados</h2>
+<p>Ir a la pestaña de Tasks (marcada en naranja) y darle click.</p>
+<p><img src="Img/33.png" width="780px" /></p>
+<p>Aparece esta pantalla, dar click en Run.</p>
+<p><img src="Img/34.png" width="780px" /></p>
+<p>Aparece la siguiente pantalla con la información del archivo a guardar en tu Google Drive, nombre del trabajo, tamaño de pixel, folder donde lo va a guardar y nombre del archivo.</p>
+<p><img src="Img/35.png" width="780px" /></p>
+<p>Dar click en Run.</p>
+<p><img src="Img/36.png" width="780px" /></p>
+<p>Aparece un engranito al lado del trabajo que se corrió. Dar click en Run.</p>
+<p><img src="Img/38.png" width="780px" /></p>
+<p>Esperar hasta que aparezca una palominta en donde se ve el engrane y aparecerá en tu drive la imagen descargada.</p>
+</div>
+<div id="errores" class="section level2">
+<h2>Errores</h2>
+<p>En caso de que durante alguno de los procesos ocurra un error, éste será indicado en la pestaña de la consola. Se recomienda leer la sección de Debugging de la plataforma, disponible en la siguiente liga: <a href="https://developers.google.com/earth-engine/debugging" class="uri">https://developers.google.com/earth-engine/debugging</a></p>
+<p>Algunos de los errores más comunes incluyen:</p>
+<ol style="list-style-type: decimal">
+<li>La falta de definición de los nombres de todas las variables (var).</li>
+<li>Sobrepasar el límite por default de pixeles a descargar.</li>
+<li>No poseer de suficiente espacio en el Google Drive personal.</li>
+<li>La falta de ; al final de cada comando.</li>
+<li>Errores ortográficos.</li>
+<li>Sobrepasar el límite de procesamiento. a.</li>
+<li>Sobrepasar el límite de procesamiento. b.</li>
+</ol>
+<p>Las soluciones a cada uno de estos problemas son los siguientes:</p>
+<ol style="list-style-type: decimal">
+<li>Revisar que todas las variables hayan sido declaradas con la función var.</li>
+<li>En la línea final de exportación de la imagen cambiar el valor de maxPixels.</li>
+<li>Borrar archivos que no se utilicen en el Google Drive.</li>
+<li>Revisar que todos los comandos finalicen con ;.</li>
+<li>Revisar los nombres de las variables y funciones (cuidando mayúsculas y minúsculas).</li>
+<li>Cuando ocurre esto normalmente se debe a que se quiere visualizar el resultado de un procesamiento tardado. La solución sencilla es no visualizar el resultado en el visualizador de la plataforma, sino sólo descargarlo. Google Earth Engine permite una mayor capacidad de procesamiento cuando se exportan los resultados que cuando se quiere visualizarlos.</li>
+<li>A veces se puede sobrepasar el límite de procesamiento por utilizar códigos redundantes. Este tipo de errores se pueden solucionar leyendo cuál es el método más apropiado para la función que el usuario desea realizar.</li>
+</ol>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
